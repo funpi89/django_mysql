@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <form action="{% url 'query' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>EmployeeID</label>
+            <input type="search" class="form-control"  aria-describedby="emailHelp" placeholder="EmployeeID" name="employeeid">
+            <small  class="form-text text-muted">enter your employeeid</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Query</button>
+    </form>
+    <p></p>
+    <table class="table table-striped table-dark table-hover">
+        <thead>
+        <tr>
+            <th scope="col">EmployeeID</th>
+            <th scope="col">LastName</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">BirthDate</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if employee %}
+        <tr>
+            <th scope="row">{{ employee.employeeid }}</th>
+            <td>{{ employee.lastname }}</td>
+            <td>{{ employee.firstname }}</td>
+            <td>{{ employee.birthdate }}</td>
+        </tr>
+        </tbody>
+            </table>
+        {% else %}
+            {{ message }}
+        {% endif %}
+
+
+{% endblock %}

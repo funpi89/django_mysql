@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <form action="{% url 'update' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>EmployeeID</label>
+            <input type="search" class="form-control"  aria-describedby="emailHelp" placeholder="employeeid" name="employeeid">
+            <small  class="form-text text-muted">enter your employeeid</small>
+        </div>
+        <div class="form-group">
+            <label>LastName</label>
+            <input type="search" class="form-control"  aria-describedby="emailHelp" placeholder="lastname" name="lastname">
+            <small  class="form-text text-muted">enter your lastname</small>
+        </div>
+        <div class="form-group">
+            <label>FirstName</label>
+            <input type="search" class="form-control"  aria-describedby="emailHelp" placeholder="firstname" name="firstname">
+            <small  class="form-text text-muted">enter your firstname</small>
+        </div>
+        <div class="form-group">
+            <label>BirthDate</label>
+            <input type="search" class="form-control"  aria-describedby="emailHelp" placeholder="birthdate" name="birthdate">
+            <small  class="form-text text-muted">enter your birthdate</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+
+    {{ message }}
+    <p></p>
+            <table class="table table-striped table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">EmployeeID</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">BirthDate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% if employees %}
+                {% for employee in employees %}
+                    <tr>
+                        <th scope="row">{{ employee.employeeid }}</th>
+                            <td>{{ employee.lastname }}</td>
+                            <td>{{ employee.firstname }}</td>
+                            <td>{{ employee.birthdate }}</td>
+                    </tr>
+                {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+
+{% endblock %}
